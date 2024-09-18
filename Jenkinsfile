@@ -4,13 +4,12 @@ pipeline {
 
 	tools {
         maven "MAVEN3"
+        docker "mydocker"
     }
 
     environment {
         registry = "kofipat/vprofileapp"
         registryCredential = 'dockerhub'
-        def dockerHome = tool 'mydocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
     stages{
