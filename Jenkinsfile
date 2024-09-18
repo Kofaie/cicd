@@ -9,6 +9,8 @@ pipeline {
     environment {
         registry = "kofipat/vprofileapp"
         registryCredential = 'dockerhub'
+        def dockerHome = tool 'mydocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
     }
 
     stages{
@@ -70,11 +72,6 @@ pipeline {
                     waitForQualityGate abortPipeline: true
                 }
             }
-        }
-
-        stage('Initialize'){
-            def dockerHome = tool 'mydocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
 
         stage('Build App Image') {
