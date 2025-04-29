@@ -103,7 +103,8 @@ pipeline {
           agent {label 'BAK'}
             steps {
               sh '''
-	      	echo "$KUBECONFIG" > kubeconfig.yaml
+		cd /masterNFS/gitrepos/k8s/vprofile-project      	
+		echo "$KUBECONFIG" > kubeconfig.yaml
                 export KUBECONFIG=$(pwd)/kubeconfig.yaml
 		"helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} --namespace test"
 		'''
