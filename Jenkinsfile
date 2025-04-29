@@ -9,6 +9,8 @@ pipeline {
     environment {
         registry = "kofipat/vprofileapp"
         registryCredential = 'dockerhub'
+
+	KUBECONFIG = credentials('kubeconfig-credential-id')
     }
 
     stages{
@@ -100,7 +102,11 @@ pipeline {
         stage('Kubernetes Deploy') {
           agent {label 'BAK'}
             steps {
-              sh "helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} --namespace test"
+              sh '''
+	      	echo "$KUBECONFIG" > kubeconfig.yaml
+                export KUBECONFIG=$(pwd)/kubeconfig.yaml
+		"helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} --namespace test"
+		'''
             }
         }
     }
