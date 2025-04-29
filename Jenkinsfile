@@ -103,7 +103,7 @@ pipeline {
           agent {label 'BAK'}
             steps {
               sh '''
-		"helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} -n test"
+		"helm upgrade --install --force vprofile-stack /opt/jenkins-slave/workspace/cicd/helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} -n test"
 		'''
             }
         }
