@@ -102,9 +102,7 @@ pipeline {
         stage('Kubernetes Deploy') {
           agent {label 'BAK'}
             steps {
-              sh '''
-  		"helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} -n test"
-		'''
+              sh "helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} -n test"
             }
         }
     }
