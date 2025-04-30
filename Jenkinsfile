@@ -17,8 +17,7 @@ pipeline {
 		steps {
 			withCredentials([string(credentialsId: 'kubeconfig-credential-id', variable: 'kubeconfig-credential-id')]) {
                     		sh '''
-                        	echo ~/.kube/config > kubeconfig.yaml
-				export KUBECONFIG=$(pwd)/kubeconfig.yaml
+				export KUBECONFIG=~/.kube/config
 				cat $KUBECONFIG
 
                         	helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V31 -n test
