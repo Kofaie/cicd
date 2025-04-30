@@ -105,6 +105,7 @@ pipeline {
               sh '''
 		export KUBECONFIG=~/.kube/config
 		helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V${BUILD_NUMBER} -n test
+  		kubectl describe pod vproapp -n test | grep -i image:
 		'''
             }
         }
