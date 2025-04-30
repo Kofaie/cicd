@@ -15,12 +15,11 @@ pipeline {
         stage('Kubernetes Deploy') {
           agent {label 'BAK'}
 		steps {
-			withCredentials([string(credentialsId: 'kubeconfig-credential-id', variable: 'KUBECONFIG_CONTENT')]) {
+			withCredentials([string(credentialsId: 'kubeconfig-credential-id', variable: 'kubeconfig-credential-id')]) {
                     		sh '''
-                        	echo "$KUBECONFIG_CONTENT" > kubeconfig.yaml
-				cat kubeconfig.yaml
-                        	export KUBECONFIG=$(pwd)/kubeconfig.yaml
-				cat KUBECONFIG
+                        	echo "$kubeconfig-credential-id" > kubeconfig.yaml
+				export KUBECONFIG=$(pwd)/kubeconfig.yaml
+				cat ~/.kube/config
 
                         	helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V31 -n test
                     		'''
