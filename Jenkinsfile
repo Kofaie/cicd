@@ -24,6 +24,7 @@ pipeline {
 
                         helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:V31 -n test
                     '''
-        }
-    }
+        		}
+    		}
+	}
 }
