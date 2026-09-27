@@ -23,3 +23,4 @@ Then look for the file :
 
 Sonarqube server IP update
 Docker image rebuilt
+Docker credentials updated in jenkins
