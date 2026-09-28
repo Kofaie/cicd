@@ -25,3 +25,4 @@ Sonarqube server IP update
 Docker image rebuilt
 Docker credentials updated in jenkins
 Docker personal access token created
+k8s config of jenkins user on km1 (slave) updated
