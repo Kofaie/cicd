@@ -29,3 +29,4 @@ k8s config of jenkins user on km1 (slave) updated
 jenkins updated to the latest
 Docker rebuilt on latest jenkins
 Updated java to 17 on slave, km1
+Updated java to 21 on slave, km1
